@@ -1,0 +1,45 @@
+(function ($) {
+    var filetypes = /\.(zip|pdf|xml|csv|doc*|xls*|ppt*|odt|ods|odp)/i;
+    $('a').each(function () {
+        var href = $(this).attr('href');
+        if (href && href.match(filetypes)) {
+            $(this).click(function () {
+                var filePath = href;
+                if (filePath.indexOf('/documents/') < 0) {
+                    var filename = filePath.split("/").pop();
+                } else {
+                    var filePathArray = filePath.split("/");
+                    var filename = filePathArray[filePathArray.length - 2];
+                }
+                ga('send', 'event', 'Pobrania', 'Pobranie-' + filename, window.location.href);
+            });
+        }
+    });
+})(jQuery);
+var trackOutboundLink = function (e, url) {
+    if (e.ctrlKey || e.metaKey) {
+        ga('send', 'event', 'outbound', 'click', url);
+    } else {
+        e.preventDefault();
+        if (window.ga && ga.loaded) {
+            ga('send', 'event', 'outbound', 'click', url, {
+                'transport': 'beacon',
+                'hitCallback': function () {
+                    document.location = url;
+                }
+            });
+        } else {
+            document.location = url;
+        }
+        ;
+    }
+    ;
+};
+(function ($) {
+    if ($("a.external").length) {
+        $("a.external").click(function (e) {
+            trackOutboundLink(e, $(this).attr("href"));
+        });
+    }
+    ;
+})(jQuery);

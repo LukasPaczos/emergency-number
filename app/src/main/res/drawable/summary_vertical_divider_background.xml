@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- This is the line -->
+    <item>
+        <shape>
+            <padding android:left="2px" android:top="2px" android:right="2px" android:bottom="0dp"/>
+            <solid android:color="@color/divider" />
+        </shape>
+    </item>
+    <!-- This is the main color -->
+    <item>
+        <shape>
+            <solid android:color="@color/default_background" />
+        </shape>
+    </item>
+</layer-list>

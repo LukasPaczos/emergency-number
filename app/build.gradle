@@ -1,0 +1,76 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+//noinspection GradleCompatible
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        applicationId "com.lukaspaczos.emergencynumber"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        def key = "0"
+        if (file("private_properties.gradle").exists()) {
+            apply from: 'private_properties.gradle'
+            key = project.ext.has("myFabricApiKey") ? myFabricApiKey : "0"
+        }
+
+        manifestPlaceholders = [fabricApiKey: key]
+    }
+    buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:support-v4:26.1.0'
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.android.support:cardview-v7:26.1.0'
+    compile 'com.google.android:flexbox:0.2.5'
+    compile 'com.shawnlin:number-picker:2.4.2'
+    compile 'com.google.android.gms:play-services-location:11.4.2'
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'me.grantland:autofittextview:0.2.1'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'commons-codec:commons-codec:1.10'
+    compile 'com.andkulikov:transitionseverywhere:1.7.2'
+    compile 'jp.wasabeef:recyclerview-animators:2.2.6'
+    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
+    testCompile 'junit:junit:4.12'
+    compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+        transitive = true;
+    }
+}

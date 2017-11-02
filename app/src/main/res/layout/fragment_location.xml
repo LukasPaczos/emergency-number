@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lukaspaczos.emergencynumber.ui.report.fragment.LocationFragment">
+
+    <ProgressBar
+        android:id="@+id/location_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/location_content_current_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!--FIXME goes below chosen categories layout when soft keyboard shown-->
+            <TextView
+                fontPath="Lato-Bold.ttf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/location_where"
+                android:textColor="@color/primary_text"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/location_use_current_location_btn"
+                style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:drawableLeft="@drawable/ic_action_location"
+                android:paddingLeft="12dp"
+                android:text="@string/location_use_current_location"
+                android:theme="@style/MyButton" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:text="@string/location_use_custom"
+                android:textColor="@color/secondary_text"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/location_adress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:hint="@string/location_address" />
+
+            <Button
+                android:id="@+id/location_confirm_btn"
+                style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/victim_count_confirm"
+                android:theme="@style/MyButton" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
+

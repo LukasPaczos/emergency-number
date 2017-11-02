@@ -1,0 +1,91 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.lukaspaczos.emergencynumber.ui.report.fragment.VictimCountFragment">
+
+    <TextView
+        fontPath="Lato-Bold.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/victim_count_q"
+        android:textColor="@color/primary_text"
+        android:textSize="24sp" />
+
+    <com.shawnlin.numberpicker.NumberPicker
+        android:id="@+id/victim_count_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:np_dividerColor="@color/colorPrimary"
+        app:np_dividerDistance="50dp"
+        app:np_max="5"
+        app:np_min="0"
+        app:np_orientation="horizontal"
+        app:np_textColor="@color/colorPrimary"
+        app:np_textSize="24sp"
+        app:np_value="0"
+        app:np_wheelItemCount="5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/victim_count_among"
+        android:textColor="@color/secondary_text"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:weightSum="3">
+
+        <CheckBox
+            android:id="@+id/victim_count_heavily_injured_chk"
+            style="@style/MyCheckBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/victim_count_heavily_injured"
+            android:textColor="@color/secondary_text" />
+
+        <CheckBox
+            android:id="@+id/victim_count_burned_chk"
+            style="@style/MyCheckBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/victim_count_unconscious"
+            android:textColor="@color/secondary_text" />
+
+        <CheckBox
+            android:id="@+id/victim_count_trapped_chk"
+            style="@style/MyCheckBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/victim_count_im_in_danger"
+            android:textColor="@color/secondary_text" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/victim_count_confirm_btn"
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/victim_count_confirm"
+        android:theme="@style/MyButton" />
+
+
+</LinearLayout>
+

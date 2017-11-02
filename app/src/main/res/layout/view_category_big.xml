@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/main_category_width"
+    android:layout_height="@dimen/main_category_height"
+    android:background="@color/category_background">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/icon_category_big"
+        android:layout_height="@dimen/icon_category_big"
+        android:layout_centerInParent="true"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/ic_launcher" />
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/icon"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        android:text="KATEGORIA"
+        android:textColor="@color/primary_white_text"
+        android:textSize="14sp" />
+
+</RelativeLayout>

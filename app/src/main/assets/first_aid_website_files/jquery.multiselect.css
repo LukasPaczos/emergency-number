@@ -1,0 +1,106 @@
+.ms-options-wrap,
+.ms-options-wrap * {
+    box-sizing: border-box;
+    width: 190px;
+    display: inline-block;
+}
+
+.ms-options-wrap > button:focus,
+.ms-options-wrap > button {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+    border: 2px solid #aaa;
+    background-color: #fff;
+    padding: 13px 7px;
+    margin-bottom: 0;
+    margin-top: 0px;
+    color: #aaa;
+    outline: none;
+    white-space: nowrap;
+}
+
+.ms-options-wrap > button:after {
+    content: ' ';
+    height: 0;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    width: 0;
+    border: 6px solid rgba(0, 0, 0, 0);
+    border-top-color: #999;
+    margin-top: -3px;
+}
+
+.ms-options-wrap > .ms-options {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    margin-bottom: 20px;
+    background: white;
+    z-index: 2000;
+    border: 2px solid #aaa;
+    top: 43px;
+}
+
+.ms-options-wrap > .ms-options > .ms-search input {
+    width: 100%;
+    padding: 4px 5px;
+    border: none;
+    border-bottom: 1px groove;
+    outline: none;
+}
+
+.ms-options-wrap > .ms-options .ms-selectall {
+    display: inline-block;
+    font-size: .9em;
+    text-transform: lowercase;
+    text-decoration: none;
+}
+.ms-options-wrap > .ms-options .ms-selectall:hover {
+    text-decoration: underline;
+}
+
+.ms-options-wrap > .ms-options > .ms-selectall.global {
+    margin: 4px 5px;
+}
+
+.ms-options-wrap > .ms-options > ul > li.optgroup {
+    padding: 5px;
+}
+.ms-options-wrap > .ms-options > ul > li.optgroup + li.optgroup {
+    border-top: px solid #aaa;
+}
+
+.ms-options-wrap > .ms-options > ul > li.optgroup .label {
+    display: block;
+    padding: 5px 0 0 0;
+    font-weight: bold;
+    width: 100%;
+}
+
+.ms-options-wrap > .ms-options > ul label {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    padding: 4px;
+    /*font-family: "Open sans";*/
+    line-height: 1.333em;
+    margin: 3px 0;
+    margin-left: 8px;
+    padding-left: 26px;
+    vertical-align: middle;
+    background: url(../images/checkbox.png) left no-repeat;
+}
+
+.ms-options-wrap > .ms-options > ul li.selected label {
+    background: url(../images/checkbox-checked.png) left no-repeat;
+}
+
+.ms-options-wrap > .ms-options > ul input[type="checkbox"] {
+    margin-right: 5px;
+    position: absolute;
+    left: 4px;
+    top: 7px;
+}

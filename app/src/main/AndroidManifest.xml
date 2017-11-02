@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lukaspaczos.emergencynumber">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.screen.portrait"
+        android:required="true" />
+    <uses-feature android:name="android.software.webview" />
+
+    <application
+        android:name="com.lukaspaczos.emergencynumber.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.lukaspaczos.emergencynumber.launcher.LauncherActivity"
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Register">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.lukaspaczos.emergencynumber.MainActivity"
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <!--Send Receiver-->
+        <receiver android:name="com.lukaspaczos.emergencynumber.broadcast.receiver.SendBroadcastReceiver">
+            <intent-filter>
+                <action android:name="message_send" />
+            </intent-filter>
+        </receiver>
+        <!--Delivery Receiver-->
+        <receiver android:name="com.lukaspaczos.emergencynumber.broadcast.receiver.DeliveryBroadcastReceiver">
+            <intent-filter>
+                <action android:name="message_delivery" />
+            </intent-filter>
+        </receiver>
+        <!--SMS Receiver-->
+        <receiver android:name="com.lukaspaczos.emergencynumber.broadcast.receiver.NewSmsBroadcastReceiver"
+            android:permission="android.permission.BROADCAST_SMS">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.lukaspaczos.emergencynumber.launcher.RulesActivity"
+            android:label="@string/title_activity_rules"
+            android:parentActivityName="com.lukaspaczos.emergencynumber.launcher.LauncherActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.lukaspaczos.emergencynumber.launcher.LauncherActivity" />
+        </activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="${fabricApiKey}" />
+    </application>
+
+</manifest>

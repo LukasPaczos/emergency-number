@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">112 - numer alarmowy</string>
+
+    <!--ACTIVITY-->
+    <string name="no_permissions_title">Aplikacja zostanie zamknięta</string>
+    <string name="no_permissions_message">Do poprawnego działania aplikacja wymaga kilku niezbędnych pozwoleń. Możesz przeczytac je ponownie lub zakończyc działanie.</string>
+    <string name="no_permissions_close">Zakończ</string>
+    <string name="no_permissions_retry">Wyraź zgody</string>
+
+    <!-- ///// TAB NAMES ///// -->
+    <string name="tab_report">Zgłoś</string>
+    <string name="tab_messages">SMS</string>
+    <string name="tab_history">Historia</string>
+    <string name="tab_first_aid">Pierwsza pomoc</string>
+
+
+    <!-- ///// CATEGORIES ///// -->
+
+    <string name="permissions">Żeby kontynuować musisz wyrazić zgodę.</string>
+
+    <string name="inne">INNE</string>
+
+    <!--MAIN-->
+    <string name="main_wypadek">WYPADEK</string>
+    <string name="main_pozar">POŻAR</string>
+    <string name="main_wlamanie">KRADZIEŻ/NAPAD</string>
+    <string name="main_uraz">URAZ</string>
+    <string name="main_przemoc">PRZEMOC</string>
+    <string name="main_zdrowie">PROBLEMY ZDROWOTNE</string>
+
+    <!--WYPADEK-->
+    <string name="wypadek_drogowy">DROGOWY</string>
+    <string name="wypadek_utoniecie">UTONIĘCIE</string>
+    <string name="wypadek_porazenie">PORAŻENIE</string>
+    <string name="wypadek_inne_pogotowie">INNY (POGOTOWIE)</string>
+    <string name="wypadek_inne_policja">INNY (POLICJA)</string>
+    <string name="wypadek_inne_straz">INNY (STRAŻ POŻARNA)</string>
+
+    <!--POŻAR-->
+    <string name="pozar_budynku">BUDYNKU</string>
+    <string name="pozar_chemiczny">CHEMICZNY</string>
+    <string name="pozar_natury">NATURY</string>
+    <string name="pozar_przedmiotu">PRZEDMIOTU</string>
+
+    <!--WŁAMANIE-->
+    <string name="kradziez_kradziez">KRADZIEŻ</string>
+    <string name="kradziez_morderstwo">MORDERSTWO</string>
+    <string name="kradziez_wandalizm">WANDALIZM</string>
+    <string name="kradziez_wlamanie">WŁAMANIE</string>
+
+    <!--URAZ-->
+    <string name="uraz_krwotok">KRWOTOK</string>
+    <string name="uraz_poparzenie">POPARZENIE</string>
+    <string name="uraz_utrata">UTRATA</string>
+    <string name="uraz_zlamanie">ZŁAMANIE</string>
+
+    <!--PRZEMOC-->
+    <string name="przemoc_fizyczna">FIZYCZNA</string>
+    <string name="przemoc_psychiczna">PSYCHICZNA</string>
+    <string name="przemoc_seksualna">SEKSUALNA</string>
+
+    <!--ZDROWIE-->
+    <string name="zdrowie_bol">BÓL</string>
+    <string name="zdrowie_choroba">CHOROBA</string>
+    <string name="zdrowie_uczulenie">UCZULENIE</string>
+
+    <!--VICTIM COUNT-->
+    <string name="victim_count_q">Ilość poszkodowanych</string>
+    <string name="victim_count_among">wśród poszkodowanych</string>
+    <string name="victim_count_heavily_injured">ciężko ranni</string>
+    <string name="victim_count_unconscious">nieprzytomni</string>
+    <string name="victim_count_im_in_danger">potrzebuję pomocy</string>
+    <string name="victim_count_confirm">potwierdź</string>
+
+    <!--LOCATION-->
+    <string name="location_where">Gdzie jesteś?</string>
+    <string name="location_use_current_location">Użyj aktualnej lokalizacji</string>
+    <string name="location_wrong_address">Nieprawidłowy adres.</string>
+    <string name="gps_not_found_title">Czy chcesz uruchomić GPS?</string>
+    <string name="gps_not_found_message">Żeby uzyskać informacje o aktualnej lokalizacji musisz uruchomić moduł GPS.</string>
+    <string name="gps_not_found_confirm">Przejdź do ustawień</string>
+    <string name="gps_not_found_cancel">Anuluj</string>
+    <string name="gps_not_found_error_no_location">Aktualna lokalizacja niedostępna. Spróbuj ponownie, lub wpisz adres.</string>
+
+    <!--SUMMARY-->
+    <string name="summary_send">Wyślij zgłoszenie</string>
+    <string name="report_send_try">Wysyłam…</string>
+    <string name="summary_victims_count">Poszkodowanych</string>
+
+    <!--MESSAGES-->
+    <string name="messages_empty_hint">Brak wiadomości.\n\nPo wysłaniu zgłoszenia tutaj otrzymasz odpowiedź od operatora numeru alarmowego (z możliwością dalszej komunikacji).</string>
+    <string name="message_respond_hint">Napisz wiadomość…</string>
+
+    <!--HISTORY-->
+    <string name="history_empty_hint">Historia pusta.\n\nTutaj możesz przeglądać swoje poprzednie zgłoszenia i rozmowę przeprowadzoną z operatorem numeru alarmowego w danej sytuacji.</string>
+    <string name="history_remove_title">Wpis zostanie usunięty</string>
+    <string name="history_remove_message">Czy na pewno chcesz na stałe usunąć ten wpis z historii?</string>
+    <string name="history_remove_confirm">Usuń</string>
+    <string name="history_remove_cancel">Anuluj</string>
+    <string name="history_details">Szczegóły</string>
+    <string name="details_messages_history_title">Historia wiadomości.</string>
+
+    <!--FIRST AID-->
+    <string name="web_view_error">Wystąpił bład. Nie można załadować wskazówek pierwszej pomocy.</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email (opcjonalnie)</string>
+    <string name="prompt_name">Imię</string>
+    <string name="action_register">ZAREJESTRUJ SIĘ</string>
+    <string name="error_invalid_phone">Niewłaściwy numer telefonu</string>
+    <string name="error_invalid_email">Niewłaściwy email</string>
+    <string name="error_field_required">To pole jest wymagane</string>
+    <string name="error_internet">Wystąpił błąd. Brak dostępu do internetu.</string>
+    <string name="error_unknown">Wystąpił problem z połączeniem, spróbuj później.</string>
+
+    <!--RULES-->
+    <string name="title_activity_rules">Regulamin</string>
+    <string name="rules_not_accepted_error">Musisz zaakceptować postanowienia regulaminu.</string>
+    <string name="register_accept_rules">Akceptuję Regulamin</string>
+    <string name="first_aid_url">http://www.mz.gov.pl/system-ochrony-zdrowia/panstwowe-ratownictwo-medyczne/pierwsza-pomoc/sposob-udzielania-pierwszej-pomocy-w-wybranych-naglych-wypadkach/</string>
+    <string name="rules_url">file:///android_asset/rules_website.html</string>
+    <string name="app_logo">Logo aplikacji</string>
+    <string name="action_start_begin">ROZPOCZNIJ</string>
+    <string name="prompt_emergency_phone">Numer alarmowy</string>
+    <string name="send_message_desc">Wyślij wiadomość</string>
+    <string name="location_use_custom">lub wpisz adres</string>
+    <string name="location_address">Adres…</string>
+    <string name="error_sending_report">Wystąpił błąd. Sprawdź poprawność numeru alarmowego w ustawieniach i spróbuj ponownie.</string>
+</resources>

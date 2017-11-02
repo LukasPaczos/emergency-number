@@ -1,0 +1,97 @@
+<resources>
+    <string name="app_name">Emergency Number</string>
+
+    <!--PREFERENCES-->
+    <string name="preferences_DB_name" translatable="false">preferences</string>
+    <string name="action_register">REGISTER</string>
+    <string name="action_start_begin">LET\'S BEGIN</string>
+    <string name="details_messages_history_title">Message history</string>
+
+    <string name="first_aid_cache_file_path" translatable="false">file:///android_asset/first_aid_website.html</string>
+    <string name="gps_not_found_cancel">Cancel</string>
+    <string name="gps_not_found_confirm">Go to settings</string>
+    <string name="history_details">Details</string>
+    <string name="history_empty_hint">History is empty. Here you can review past reports and conversations with emergenecy number operators</string>
+    <string name="history_remove_cancel">Cancel</string>
+    <string name="history_remove_confirm">Remove</string>
+    <string name="inne">OTHER</string>
+    <string name="kradziez_kradziez">ROBBERY</string>
+    <string name="kradziez_morderstwo">HOMOCIDE</string>
+    <string name="kradziez_wandalizm">VANDALISM</string>
+    <string name="no_permissions_title">Application will close</string>
+    <string name="no_permissions_message">To work properly this application requires additional permissions. You can read them again or leave.</string>
+    <string name="no_permissions_close">Leave</string>
+    <string name="no_permissions_retry">Read permissions</string>
+    <string name="tab_report">Report</string>
+    <string name="tab_messages">SMS</string>
+    <string name="tab_history">History</string>
+    <string name="tab_first_aid">First aid</string>
+    <string name="permissions">To continue you need to accept permissions</string>
+    <string name="universal_category" translatable="false">universal_category</string>
+    <string name="main_wypadek">ACCIDENT</string>
+    <string name="main_pozar">FIRE</string>
+    <string name="main_wlamanie">ROBBERY/ASSAULT</string>
+    <string name="main_uraz">INJURY</string>
+    <string name="main_przemoc">VIOLENCE</string>
+    <string name="main_zdrowie">HEALTH PROBLEMS</string>
+    <string name="wypadek_drogowy">ROAD</string>
+    <string name="wypadek_utoniecie">DROWNING</string>
+    <string name="wypadek_porazenie">ELECTROCUTION</string>
+    <string name="wypadek_inne_pogotowie">OTHER (EMERGENCY)</string>
+    <string name="wypadek_inne_policja">OTHER (POLICE)</string>
+    <string name="wypadek_inne_straz">OTHER (FIRE DEPT.)</string>
+    <string name="pozar_budynku">BUILDING</string>
+    <string name="pozar_chemiczny">CHEMICAL</string>
+    <string name="pozar_natury">NATURE</string>
+    <string name="pozar_przedmiotu">OBJECT</string>
+    <string name="kradziez_wlamanie">BURGLARY</string>
+    <string name="uraz_krwotok">HAEMORRHAGE</string>
+    <string name="uraz_poparzenie">BURN</string>
+    <string name="uraz_utrata">BODY LOSS</string>
+    <string name="uraz_zlamanie">FRACTURE</string>
+    <string name="przemoc_fizyczna">PSHYSICAL</string>
+    <string name="przemoc_psychiczna">PSYCHICAL</string>
+    <string name="przemoc_seksualna">SEXUAL</string>
+    <string name="zdrowie_bol">PAIN</string>
+    <string name="zdrowie_choroba">SICKNESS</string>
+    <string name="zdrowie_uczulenie">ALLERGY</string>
+    <string name="victim_count_q">Victim count</string>
+    <string name="victim_count_among">among victims</string>
+    <string name="victim_count_heavily_injured">heavily injured</string>
+    <string name="victim_count_unconscious">unconscious</string>
+    <string name="victim_count_im_in_danger">I need help</string>
+    <string name="victim_count_confirm">confirm</string>
+    <string name="location_where">Where are you?</string>
+    <string name="location_use_current_location">Use current location</string>
+    <string name="location_wrong_address">Invalid address.</string>
+    <string name="gps_not_found_title">Do you want to enable location?</string>
+    <string name="gps_not_found_message">To let us acquire your current location you need to enable GPS module.</string>
+    <string name="gps_not_found_error_no_location">Location unavailable. Try again or put in an address</string>
+    <string name="summary_send">Send report</string>
+    <string name="report_send_try">Sending…</string>
+    <string name="summary_victims_count">Victims</string>
+    <string name="messages_empty_hint">No messages.\nOnce you send a report, you will receive answers from the operator of the emergency number (with an option of further communication).</string>
+    <string name="message_respond_hint">Write…</string>
+    <string name="history_remove_title">Entry will be removed</string>
+    <string name="history_remove_message">Do you really want to remove this entry permanently?</string>
+    <string name="web_view_error">Error occurred while loading first aid tips.</string>
+    <string name="prompt_email">E-mail (optional)</string>
+    <string name="prompt_name">Name</string>
+    <string name="prompt_emergency_phone">Emergency phone number</string>
+    <string name="error_invalid_phone">Invalid phone number</string>
+    <string name="error_invalid_email">Invalid e-mail</string>
+    <string name="error_field_required">this field is required</string>
+    <string name="error_internet">Error occurred. No internet access.</string>
+    <string name="error_unknown">Error occurred. Try again later.</string>
+    <string name="error_sending_report">Error occurred. Check emergency phone number in settings and try again later.</string>
+    <string name="title_activity_rules">Terms &amp; conditions</string>
+    <string name="rules_url">http://google.com</string>
+    <string name="rules_not_accepted_error">You need to accept terms and conditions.</string>
+    <string name="register_accept_rules">I accept terms &amp; conditions</string>
+    <string name="first_aid_url">http://www.redcross.org.uk/What-we-do/First-aid/Everyday-First-Aid/Fast-first-aid-tips</string>
+    <string name="category_none" translatable="false">category_none</string>
+    <string name="app_logo">App logo</string>
+    <string name="send_message_desc">Send message</string>
+    <string name="location_use_custom">or put in an address</string>
+    <string name="location_address">Address…</string>
+</resources>

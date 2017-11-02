@@ -1,0 +1,10 @@
+@media screen and (min-width: 769px) {
+body .logo-image:before {
+      background: url(../images/header_logo_new.png) no-repeat;
+      content: "";
+      background-size: contain;
+      float: left;
+      padding: 10px 10px 10px 0;
+      width: 100%;
+      height: 28px; }
+}
