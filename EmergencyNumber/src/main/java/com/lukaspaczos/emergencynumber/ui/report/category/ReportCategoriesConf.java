@@ -24,106 +24,106 @@ public class ReportCategoriesConf {
          * MAIN CATEGORIES
          */
         Resources r = App.getContext().getResources();
-        categories.put(r.getString(R.string.main_wypadek), r.getString(R.string.category_none));
-        categories.put(r.getString(R.string.main_pozar), r.getString(R.string.category_none));
-        categories.put(r.getString(R.string.main_wlamanie), r.getString(R.string.category_none));
-        categories.put(r.getString(R.string.main_uraz), r.getString(R.string.category_none));
-        categories.put(r.getString(R.string.main_przemoc), r.getString(R.string.category_none));
-        categories.put(r.getString(R.string.main_zdrowie), r.getString(R.string.category_none));
+        categories.put(r.getString(R.string.category_main_accident), r.getString(R.string.category_none));
+        categories.put(r.getString(R.string.category_main_fire), r.getString(R.string.category_none));
+        categories.put(r.getString(R.string.category_main_theft), r.getString(R.string.category_none));
+        categories.put(r.getString(R.string.category_main_injury), r.getString(R.string.category_none));
+        categories.put(r.getString(R.string.category_main_violence), r.getString(R.string.category_none));
+        categories.put(r.getString(R.string.category_main_health), r.getString(R.string.category_none));
 
         /*
          * WYPADEK SUB-CATEGORIES
          */
-        categories.put(r.getString(R.string.wypadek_drogowy), r.getString(R.string.main_wypadek));
-        categories.put(r.getString(R.string.wypadek_utoniecie), r.getString(R.string.main_wypadek));
-        categories.put(r.getString(R.string.wypadek_porazenie), r.getString(R.string.main_wypadek));
-        categories.put(r.getString(R.string.wypadek_inne_pogotowie), r.getString(R.string.main_wypadek));
-        categories.put(r.getString(R.string.wypadek_inne_policja), r.getString(R.string.main_wypadek));
-        categories.put(r.getString(R.string.wypadek_inne_straz), r.getString(R.string.main_wypadek));
+        categories.put(r.getString(R.string.category_accident_road), r.getString(R.string.category_main_accident));
+        categories.put(r.getString(R.string.category_drowning), r.getString(R.string.category_main_accident));
+        categories.put(r.getString(R.string.category_electrocution), r.getString(R.string.category_main_accident));
+        categories.put(r.getString(R.string.category_other_emergency), r.getString(R.string.category_main_accident));
+        categories.put(r.getString(R.string.category_other_police), r.getString(R.string.category_main_accident));
+        categories.put(r.getString(R.string.category_other_fire_dept), r.getString(R.string.category_main_accident));
 
 
         /*
          * POZAR SUB_CATEGORIES
          */
-        categories.put(r.getString(R.string.pozar_budynku), r.getString(R.string.main_pozar));
-        categories.put(r.getString(R.string.pozar_chemiczny), r.getString(R.string.main_pozar));
-        categories.put(r.getString(R.string.pozar_natury), r.getString(R.string.main_pozar));
-        categories.put(r.getString(R.string.pozar_przedmiotu), r.getString(R.string.main_pozar));
+        categories.put(r.getString(R.string.category_building), r.getString(R.string.category_main_fire));
+        categories.put(r.getString(R.string.category_chemical), r.getString(R.string.category_main_fire));
+        categories.put(r.getString(R.string.category_nature), r.getString(R.string.category_main_fire));
+        categories.put(r.getString(R.string.category_object), r.getString(R.string.category_main_fire));
 
         /*
          * WLAMANIE SUB_CATEGORIES
          */
-        categories.put(r.getString(R.string.kradziez_kradziez), r.getString(R.string.main_wlamanie));
-        categories.put(r.getString(R.string.kradziez_morderstwo), r.getString(R.string.main_wlamanie));
-        categories.put(r.getString(R.string.kradziez_wandalizm), r.getString(R.string.main_wlamanie));
-        categories.put(r.getString(R.string.kradziez_wlamanie), r.getString(R.string.main_wlamanie));
+        categories.put(r.getString(R.string.category_theft), r.getString(R.string.category_main_theft));
+        categories.put(r.getString(R.string.category_murder), r.getString(R.string.category_main_theft));
+        categories.put(r.getString(R.string.category_vandalism), r.getString(R.string.category_main_theft));
+        categories.put(r.getString(R.string.category_burglary), r.getString(R.string.category_main_theft));
 
         /*
          * URAZ SUB_CATEGORIES
          */
-        categories.put(r.getString(R.string.uraz_krwotok), r.getString(R.string.main_uraz));
-        categories.put(r.getString(R.string.uraz_poparzenie), r.getString(R.string.main_uraz));
-        categories.put(r.getString(R.string.uraz_utrata), r.getString(R.string.main_uraz));
-        categories.put(r.getString(R.string.uraz_zlamanie), r.getString(R.string.main_uraz));
+        categories.put(r.getString(R.string.category_hemorrhage), r.getString(R.string.category_main_injury));
+        categories.put(r.getString(R.string.category_burn), r.getString(R.string.category_main_injury));
+        categories.put(r.getString(R.string.category_body_loss), r.getString(R.string.category_main_injury));
+        categories.put(r.getString(R.string.category_fracture), r.getString(R.string.category_main_injury));
 
         /*
          * PRZEMOC SUB_CATEGORIES
          */
-        categories.put(r.getString(R.string.przemoc_fizyczna), r.getString(R.string.main_przemoc));
-        categories.put(r.getString(R.string.przemoc_psychiczna), r.getString(R.string.main_przemoc));
-        categories.put(r.getString(R.string.przemoc_seksualna), r.getString(R.string.main_przemoc));
+        categories.put(r.getString(R.string.category_physical), r.getString(R.string.category_main_violence));
+        categories.put(r.getString(R.string.category_psychical), r.getString(R.string.category_main_violence));
+        categories.put(r.getString(R.string.category_sexual), r.getString(R.string.category_main_violence));
 
         /*
          * ZDROWIE SUB_CATEGORIES
          */
-        categories.put(r.getString(R.string.zdrowie_bol), r.getString(R.string.main_zdrowie));
-        categories.put(r.getString(R.string.zdrowie_choroba), r.getString(R.string.main_zdrowie));
-        categories.put(r.getString(R.string.zdrowie_uczulenie), r.getString(R.string.main_zdrowie));
+        categories.put(r.getString(R.string.category_pain), r.getString(R.string.category_main_health));
+        categories.put(r.getString(R.string.category_sickness), r.getString(R.string.category_main_health));
+        categories.put(r.getString(R.string.category_allergy), r.getString(R.string.category_main_health));
 
         /*INNE - HAS TO BE LAST*/
-        categories.put(r.getString(R.string.inne), r.getString(R.string.universal_category));
+        categories.put(r.getString(R.string.other), r.getString(R.string.universal_category));
 
         /*
          * CATEGORIES ICONS
          */
-        icons.put(r.getString(R.string.inne), R.drawable.ic_inne);
+        icons.put(r.getString(R.string.other), R.drawable.ic_other);
 
-        icons.put(r.getString(R.string.main_wypadek), R.drawable.ic_main_wypadek);
-        icons.put(r.getString(R.string.main_pozar), R.drawable.ic_main_pozar);
-        icons.put(r.getString(R.string.main_wlamanie), R.drawable.ic_main_wlamanie);
-        icons.put(r.getString(R.string.main_uraz), R.drawable.ic_main_uraz);
-        icons.put(r.getString(R.string.main_przemoc), R.drawable.ic_main_przemoc);
-        icons.put(r.getString(R.string.main_zdrowie), R.drawable.ic_main_zdrowie);
+        icons.put(r.getString(R.string.category_main_accident), R.drawable.ic_main_accident);
+        icons.put(r.getString(R.string.category_main_fire), R.drawable.ic_main_fire);
+        icons.put(r.getString(R.string.category_main_theft), R.drawable.ic_main_burglary);
+        icons.put(r.getString(R.string.category_main_injury), R.drawable.ic_main_injury);
+        icons.put(r.getString(R.string.category_main_violence), R.drawable.ic_main_violence);
+        icons.put(r.getString(R.string.category_main_health), R.drawable.ic_main_health);
 
-        icons.put(r.getString(R.string.wypadek_drogowy), R.drawable.ic_wypadek_drogowy);
-        icons.put(r.getString(R.string.wypadek_utoniecie), R.drawable.ic_wypadek_utoniecie);
-        icons.put(r.getString(R.string.wypadek_porazenie), R.drawable.ic_wypadek_porazenie);
-        icons.put(r.getString(R.string.wypadek_inne_pogotowie), R.drawable.ic_wypadek_inne_pogotowie);
-        icons.put(r.getString(R.string.wypadek_inne_policja), R.drawable.ic_wypadek_inne_policja);
-        icons.put(r.getString(R.string.wypadek_inne_straz), R.drawable.ic_wypadek_inne_straz);
+        icons.put(r.getString(R.string.category_accident_road), R.drawable.ic_road);
+        icons.put(r.getString(R.string.category_drowning), R.drawable.ic_drowning);
+        icons.put(r.getString(R.string.category_electrocution), R.drawable.ic_electrocution);
+        icons.put(r.getString(R.string.category_other_emergency), R.drawable.ic_other_emergency);
+        icons.put(r.getString(R.string.category_other_police), R.drawable.ic_other_police);
+        icons.put(r.getString(R.string.category_other_fire_dept), R.drawable.ic_other_fire_dept);
 
-        icons.put(r.getString(R.string.pozar_budynku), R.drawable.ic_pozar_budynku);
-        icons.put(r.getString(R.string.pozar_chemiczny), R.drawable.ic_pozar_chemiczny);
-        icons.put(r.getString(R.string.pozar_natury), R.drawable.ic_pozar_natury);
-        icons.put(r.getString(R.string.pozar_przedmiotu), R.drawable.ic_pozar_przedmiotu);
+        icons.put(r.getString(R.string.category_building), R.drawable.ic_building);
+        icons.put(r.getString(R.string.category_chemical), R.drawable.ic_chemical);
+        icons.put(r.getString(R.string.category_nature), R.drawable.ic_nature);
+        icons.put(r.getString(R.string.category_object), R.drawable.ic_object);
 
-        icons.put(r.getString(R.string.kradziez_kradziez), R.drawable.ic_kradziez_kradziez);
-        icons.put(r.getString(R.string.kradziez_morderstwo), R.drawable.ic_kradziez_morderstwo);
-        icons.put(r.getString(R.string.kradziez_wandalizm), R.drawable.ic_kradziez_wandalizm);
-        icons.put(r.getString(R.string.kradziez_wlamanie), R.drawable.ic_kradziez_wlamanie);
+        icons.put(r.getString(R.string.category_theft), R.drawable.ic_theft);
+        icons.put(r.getString(R.string.category_murder), R.drawable.ic_murder);
+        icons.put(r.getString(R.string.category_vandalism), R.drawable.ic_vandalism);
+        icons.put(r.getString(R.string.category_burglary), R.drawable.ic_burglary);
 
-        icons.put(r.getString(R.string.uraz_krwotok), R.drawable.ic_uraz_krwotok);
-        icons.put(r.getString(R.string.uraz_poparzenie), R.drawable.ic_uraz_poparzenie);
-        icons.put(r.getString(R.string.uraz_utrata), R.drawable.ic_uraz_utrata);
-        icons.put(r.getString(R.string.uraz_zlamanie), R.drawable.ic_uraz_zlamanie);
+        icons.put(r.getString(R.string.category_hemorrhage), R.drawable.ic_haemorrhage);
+        icons.put(r.getString(R.string.category_burn), R.drawable.ic_burn);
+        icons.put(r.getString(R.string.category_body_loss), R.drawable.ic_body_loss);
+        icons.put(r.getString(R.string.category_fracture), R.drawable.ic_fracture);
 
-        icons.put(r.getString(R.string.przemoc_fizyczna), R.drawable.ic_przemoc_fizyczna);
-        icons.put(r.getString(R.string.przemoc_psychiczna), R.drawable.ic_przemoc_psychiczna);
-        icons.put(r.getString(R.string.przemoc_seksualna), R.drawable.ic_przemoc_seksualna);
+        icons.put(r.getString(R.string.category_physical), R.drawable.ic_physical);
+        icons.put(r.getString(R.string.category_psychical), R.drawable.ic_psychical);
+        icons.put(r.getString(R.string.category_sexual), R.drawable.ic_sexual);
 
-        icons.put(r.getString(R.string.zdrowie_bol), R.drawable.ic_zdrowie_bol);
-        icons.put(r.getString(R.string.zdrowie_choroba), R.drawable.ic_zdrowie_choroba);
-        icons.put(r.getString(R.string.zdrowie_uczulenie), R.drawable.ic_zdrowie_uczulenie);
+        icons.put(r.getString(R.string.category_pain), R.drawable.ic_pain);
+        icons.put(r.getString(R.string.category_sickness), R.drawable.ic_sickness);
+        icons.put(r.getString(R.string.category_allergy), R.drawable.ic_alergy);
 
     }
 }

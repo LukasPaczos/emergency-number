@@ -19,51 +19,51 @@
 
     <string name="permissions">Żeby kontynuować musisz wyrazić zgodę.</string>
 
-    <string name="inne">INNE</string>
+    <string name="other">INNE</string>
 
     <!--MAIN-->
-    <string name="main_wypadek">WYPADEK</string>
-    <string name="main_pozar">POŻAR</string>
-    <string name="main_wlamanie">KRADZIEŻ/NAPAD</string>
-    <string name="main_uraz">URAZ</string>
-    <string name="main_przemoc">PRZEMOC</string>
-    <string name="main_zdrowie">PROBLEMY ZDROWOTNE</string>
+    <string name="category_main_accident">WYPADEK</string>
+    <string name="category_main_fire">POŻAR</string>
+    <string name="category_main_theft">KRADZIEŻ/NAPAD</string>
+    <string name="category_main_injury">URAZ</string>
+    <string name="category_main_violence">PRZEMOC</string>
+    <string name="category_main_health">PROBLEMY ZDROWOTNE</string>
 
     <!--WYPADEK-->
-    <string name="wypadek_drogowy">DROGOWY</string>
-    <string name="wypadek_utoniecie">UTONIĘCIE</string>
-    <string name="wypadek_porazenie">PORAŻENIE</string>
-    <string name="wypadek_inne_pogotowie">INNY (POGOTOWIE)</string>
-    <string name="wypadek_inne_policja">INNY (POLICJA)</string>
-    <string name="wypadek_inne_straz">INNY (STRAŻ POŻARNA)</string>
+    <string name="category_accident_road">DROGOWY</string>
+    <string name="category_drowning">UTONIĘCIE</string>
+    <string name="category_electrocution">PORAŻENIE</string>
+    <string name="category_other_emergency">INNY (POGOTOWIE)</string>
+    <string name="category_other_police">INNY (POLICJA)</string>
+    <string name="category_other_fire_dept">INNY (STRAŻ POŻARNA)</string>
 
     <!--POŻAR-->
-    <string name="pozar_budynku">BUDYNKU</string>
-    <string name="pozar_chemiczny">CHEMICZNY</string>
-    <string name="pozar_natury">NATURY</string>
-    <string name="pozar_przedmiotu">PRZEDMIOTU</string>
+    <string name="category_building">BUDYNKU</string>
+    <string name="category_chemical">CHEMICZNY</string>
+    <string name="category_nature">NATURY</string>
+    <string name="category_object">PRZEDMIOTU</string>
 
     <!--WŁAMANIE-->
-    <string name="kradziez_kradziez">KRADZIEŻ</string>
-    <string name="kradziez_morderstwo">MORDERSTWO</string>
-    <string name="kradziez_wandalizm">WANDALIZM</string>
-    <string name="kradziez_wlamanie">WŁAMANIE</string>
+    <string name="category_theft">KRADZIEŻ</string>
+    <string name="category_murder">MORDERSTWO</string>
+    <string name="category_vandalism">WANDALIZM</string>
+    <string name="category_burglary">WŁAMANIE</string>
 
     <!--URAZ-->
-    <string name="uraz_krwotok">KRWOTOK</string>
-    <string name="uraz_poparzenie">POPARZENIE</string>
-    <string name="uraz_utrata">UTRATA</string>
-    <string name="uraz_zlamanie">ZŁAMANIE</string>
+    <string name="category_hemorrhage">KRWOTOK</string>
+    <string name="category_burn">POPARZENIE</string>
+    <string name="category_body_loss">UTRATA</string>
+    <string name="category_fracture">ZŁAMANIE</string>
 
     <!--PRZEMOC-->
-    <string name="przemoc_fizyczna">FIZYCZNA</string>
-    <string name="przemoc_psychiczna">PSYCHICZNA</string>
-    <string name="przemoc_seksualna">SEKSUALNA</string>
+    <string name="category_physical">FIZYCZNA</string>
+    <string name="category_psychical">PSYCHICZNA</string>
+    <string name="category_sexual">SEKSUALNA</string>
 
     <!--ZDROWIE-->
-    <string name="zdrowie_bol">BÓL</string>
-    <string name="zdrowie_choroba">CHOROBA</string>
-    <string name="zdrowie_uczulenie">UCZULENIE</string>
+    <string name="category_pain">BÓL</string>
+    <string name="category_sickness">CHOROBA</string>
+    <string name="category_allergy">UCZULENIE</string>
 
     <!--VICTIM COUNT-->
     <string name="victim_count_q">Ilość poszkodowanych</string>
