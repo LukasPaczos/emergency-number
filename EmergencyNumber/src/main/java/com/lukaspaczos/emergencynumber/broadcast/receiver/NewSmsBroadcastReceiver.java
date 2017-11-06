@@ -11,6 +11,7 @@ import com.lukaspaczos.emergencynumber.MainActivity;
 import com.lukaspaczos.emergencynumber.launcher.LauncherActivity;
 import com.lukaspaczos.emergencynumber.ui.messages.database.DatabaseHelper;
 import com.lukaspaczos.emergencynumber.util.Pref;
+import com.lukaspaczos.emergencynumber.util.StringUtils;
 
 /**
  * Created by Lukas Paczos on 22-Mar-17
@@ -37,7 +38,9 @@ public class NewSmsBroadcastReceiver extends BroadcastReceiver {
         SmsMessage[] messages  = Telephony.Sms.Intents.getMessagesFromIntent(intent);
         String contents = "";
         for (SmsMessage message : messages) {
-            if (message.getDisplayOriginatingAddress().equals(Pref.getString(Pref.EMERGENCY_PHONE_NUMBER, ""))) {
+            String originatingAddress = StringUtils.removeLocalized(message.getDisplayOriginatingAddress());
+
+            if (originatingAddress.equals(Pref.getString(Pref.EMERGENCY_PHONE_NUMBER, ""))) {
                 contents += message.getMessageBody();
                 startActivity = true;
             }

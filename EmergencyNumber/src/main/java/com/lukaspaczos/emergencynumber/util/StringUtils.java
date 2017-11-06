@@ -15,4 +15,11 @@ public final class StringUtils {
         return pattern.matcher(nfdNormalizedString).replaceAll("");
     }
 
+    public static String removeLocalized(String number) {
+        if (number.contains("+"))
+            return number.substring(3);
+
+        return number;
+    }
+
 }

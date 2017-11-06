@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.lukaspaczos.emergencynumber.R;
 import com.lukaspaczos.emergencynumber.util.Pref;
+import com.lukaspaczos.emergencynumber.util.StringUtils;
 import com.lukaspaczos.emergencynumber.util.UserInterfaceUtils;
 
 import java.util.Locale;
@@ -177,7 +178,7 @@ public class BeginFragment extends Fragment {
             focusView.requestFocus();
         } else {
             Pref.putString(Pref.NAME, name);
-            Pref.putString(Pref.EMERGENCY_PHONE_NUMBER, number);
+            Pref.putString(Pref.EMERGENCY_PHONE_NUMBER, StringUtils.removeLocalized(number));
             Pref.putString(Pref.EMAIL, email);
 
             mListener.startMainActivity();

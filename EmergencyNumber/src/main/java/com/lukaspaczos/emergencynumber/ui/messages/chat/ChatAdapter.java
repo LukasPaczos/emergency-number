@@ -18,7 +18,7 @@ import java.util.List;
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     private static final int MESSAGE_TYPE_ME = 0;
-    private static final int MESSAGE_TYPE_112 = 1;
+    private static final int MESSAGE_TYPE_OPERATOR = 1;
 
     private List<ChatElementModel> dataSet;
     Context mContext;
@@ -32,7 +32,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
                         .inflate(R.layout.chat_message_me, parent, false);
                 break;
 
-            case MESSAGE_TYPE_112:
+            case MESSAGE_TYPE_OPERATOR:
                 v = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.chat_message_112, parent, false);
                 break;
@@ -51,7 +51,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        return dataSet.get(position).isMe() ? MESSAGE_TYPE_ME : MESSAGE_TYPE_112;
+        return dataSet.get(position).isMe() ? MESSAGE_TYPE_ME : MESSAGE_TYPE_OPERATOR;
     }
 
     @Override

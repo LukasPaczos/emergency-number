@@ -94,4 +94,5 @@
     <string name="send_message_desc">Send message</string>
     <string name="location_use_custom">or put in an address</string>
     <string name="location_address">Address…</string>
+    <string name="chat_operator">Operator</string>
 </resources>
