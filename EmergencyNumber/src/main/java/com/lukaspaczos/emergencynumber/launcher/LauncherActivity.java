@@ -46,9 +46,6 @@ public class LauncherActivity extends AppCompatActivity implements OnFragmentInt
         contentFrame = findViewById(R.id.content_frame);
         mProgressView = (ProgressBar) findViewById(R.id.progress);
 
-        String name = Pref.getString(Pref.NAME, "");
-        String number = Pref.getString(Pref.EMERGENCY_PHONE_NUMBER, "");
-
         startIntent = getIntent();
 
         logo = (ImageView) findViewById(R.id.logo);
@@ -76,12 +73,8 @@ public class LauncherActivity extends AppCompatActivity implements OnFragmentInt
                             Manifest.permission.RECEIVE_SMS,
                             Manifest.permission.SEND_SMS},
                     PERMISSIONS_REQUEST_CODE);
-            startStart();
-        } else if (!name.isEmpty() && !number.isEmpty()) {
-            startMainActivity();
-        } else if (savedInstanceState == null) {
-            startStart();
-        }
+        } else
+            verifiedInit(savedInstanceState);
     }
 
     @Override
@@ -116,11 +109,23 @@ public class LauncherActivity extends AppCompatActivity implements OnFragmentInt
                 });
                 dialog.show();
 
-                break;
+                return;
             }
         }
+
+        verifiedInit(null);
     }
 
+    private void verifiedInit(Bundle savedInstanceState) {
+        String name = Pref.getString(Pref.NAME, "");
+        String number = Pref.getString(Pref.EMERGENCY_PHONE_NUMBER, "");
+
+        if (!name.isEmpty() && !number.isEmpty()) {
+            startMainActivity();
+        } else if (savedInstanceState == null) {
+            startStart();
+        }
+    }
 
     @Override
     public void startStart() {
