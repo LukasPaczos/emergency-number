@@ -122,10 +122,11 @@
     <string name="rules_url">file:///android_asset/rules_website.html</string>
     <string name="app_logo">Logo aplikacji</string>
     <string name="action_start_begin">ROZPOCZNIJ</string>
-    <string name="prompt_emergency_phone">Numer alarmowy</string>
+    <string name="prompt_emergency_phone">Numer alarmowy w Twoim kraju</string>
     <string name="send_message_desc">Wyślij wiadomość</string>
     <string name="location_use_custom">lub wpisz adres</string>
     <string name="location_address">Adres…</string>
     <string name="error_sending_report">Wystąpił błąd. Sprawdź poprawność numeru alarmowego w ustawieniach i spróbuj ponownie.</string>
     <string name="chat_operator">Operator</string>
+    <string name="emergency_number_api_no_country">Nie udało nam się ustalić Twojej pozycji, żeby określić numer alarmowy. Wprowadź ręcznie.</string>
 </resources>

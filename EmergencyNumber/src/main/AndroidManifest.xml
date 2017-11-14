@@ -48,19 +48,19 @@
             android:theme="@style/AppTheme" />
 
         <!--Send Receiver-->
-        <receiver android:name="com.lukaspaczos.emergencynumber.broadcast.receiver.SendBroadcastReceiver">
+        <receiver android:name=".communication.broadcast.SendBroadcastReceiver">
             <intent-filter>
                 <action android:name="message_send" />
             </intent-filter>
         </receiver>
         <!--Delivery Receiver-->
-        <receiver android:name="com.lukaspaczos.emergencynumber.broadcast.receiver.DeliveryBroadcastReceiver">
+        <receiver android:name=".communication.broadcast.DeliveryBroadcastReceiver">
             <intent-filter>
                 <action android:name="message_delivery" />
             </intent-filter>
         </receiver>
         <!--SMS Receiver-->
-        <receiver android:name="com.lukaspaczos.emergencynumber.broadcast.receiver.NewSmsBroadcastReceiver"
+        <receiver android:name=".communication.broadcast.NewSmsBroadcastReceiver"
             android:permission="android.permission.BROADCAST_SMS">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />

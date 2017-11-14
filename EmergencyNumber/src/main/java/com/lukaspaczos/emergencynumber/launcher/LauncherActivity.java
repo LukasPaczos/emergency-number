@@ -73,8 +73,9 @@ public class LauncherActivity extends AppCompatActivity implements OnFragmentInt
                             Manifest.permission.RECEIVE_SMS,
                             Manifest.permission.SEND_SMS},
                     PERMISSIONS_REQUEST_CODE);
-        } else
-            verifiedInit(savedInstanceState);
+        }
+
+        verifiedInit(savedInstanceState);
     }
 
     @Override
@@ -112,13 +113,11 @@ public class LauncherActivity extends AppCompatActivity implements OnFragmentInt
                 return;
             }
         }
-
-        verifiedInit(null);
     }
 
-    private void verifiedInit(Bundle savedInstanceState) {
-        String name = Pref.getString(Pref.NAME, "");
-        String number = Pref.getString(Pref.EMERGENCY_PHONE_NUMBER, "");
+    private void verifiedInit(final Bundle savedInstanceState) {
+        final String name = Pref.getString(Pref.NAME, "");
+        final String number = Pref.getString(Pref.EMERGENCY_PHONE_NUMBER, "");
 
         if (!name.isEmpty() && !number.isEmpty()) {
             startMainActivity();
