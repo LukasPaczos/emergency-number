@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lukaspaczos.emergencynumber.R;
 import com.lukaspaczos.emergencynumber.util.Pref;
@@ -30,6 +31,7 @@ import java.util.Locale;
 public class BeginFragment extends Fragment {
 
     public static final String TAG = "begin_fragment";
+    public static final String FETCHED_NUMBER_ARG = "fetched_number_arg";
 
     private OnFragmentInteractionListener mListener;
 
@@ -41,14 +43,18 @@ public class BeginFragment extends Fragment {
     private EditText mEmailView;
     private CheckBox mRulesView;
     private TextView mRulesTextView;
+    private Button mChangeNumberButton;
+
+    private String fetchedNumber = "";
 
     public BeginFragment() {
         // Required empty public constructor
     }
 
-    public static BeginFragment newInstance() {
+    public static BeginFragment newInstance(String fetchedNumber) {
         BeginFragment fragment = new BeginFragment();
         Bundle args = new Bundle();
+        args.putString(FETCHED_NUMBER_ARG, fetchedNumber);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,6 +63,7 @@ public class BeginFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            fetchedNumber = getArguments().getString(FETCHED_NUMBER_ARG);
         }
     }
 
@@ -69,7 +76,8 @@ public class BeginFragment extends Fragment {
         mNumberView = (EditText) rootView.findViewById(R.id.begin_number);
         mEmailView = (EditText) rootView.findViewById(R.id.email);
         mRulesView = (CheckBox) rootView.findViewById(R.id.register_rules);
-        mRulesTextView= (TextView) rootView.findViewById(R.id.register_rules_text);
+        mRulesTextView = (TextView) rootView.findViewById(R.id.register_rules_text);
+        mChangeNumberButton = rootView.findViewById(R.id.begin_change_number_button);
 
         Button mRegisterButton = (Button) rootView.findViewById(R.id.continue_button);
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +88,7 @@ public class BeginFragment extends Fragment {
             }
         });
 
-        Spannable sp = new Spannable.Factory().newSpannable(mRulesTextView.getText().toString()) ;
+        Spannable sp = new Spannable.Factory().newSpannable(mRulesTextView.getText().toString());
         ClickableSpan click = new ClickableSpan() {
             @Override
             public void onClick(View widget) {
@@ -104,6 +112,24 @@ public class BeginFragment extends Fragment {
         mRulesTextView.setText(sp);
         mRulesTextView.setMovementMethod(LinkMovementMethod.getInstance());
         mRulesTextView.setHighlightColor(ContextCompat.getColor(getActivity(), R.color.primary_white_text));
+
+        mChangeNumberButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.setVisibility(View.GONE);
+                mNumberView.setEnabled(true);
+                mNumberView.setText("");
+            }
+        });
+
+        if (fetchedNumber.isEmpty()) {
+            Toast.makeText(getActivity(), R.string.emergency_number_api_no_country, Toast.LENGTH_LONG).show();
+            mChangeNumberButton.setVisibility(View.GONE);
+        } else {
+            mNumberView.setText(fetchedNumber);
+            mNumberView.setEnabled(false);
+            mChangeNumberButton.setVisibility(View.VISIBLE);
+        }
 
         return rootView;
     }

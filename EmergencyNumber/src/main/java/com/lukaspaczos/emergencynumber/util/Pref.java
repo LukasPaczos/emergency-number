@@ -19,7 +19,7 @@ public class Pref {
 
     @Retention(RetentionPolicy.SOURCE)
     @StringDef({
-            NAME, EMERGENCY_PHONE_NUMBER, EMAIL
+            NAME, EMERGENCY_PHONE_NUMBER, EMAIL, SHOW_NUMBER_CHANGED_DIALOG
     })
 
     public @interface Type {}
@@ -27,6 +27,7 @@ public class Pref {
     public static final String NAME = "pref_name";
     public static final String EMERGENCY_PHONE_NUMBER = "pref_emergency_phone_number";
     public static final String EMAIL = "pref_email";
+    public static final String SHOW_NUMBER_CHANGED_DIALOG = "show_number_changed_dialog";
 
     private static SharedPreferences preferences = App.getContext().getSharedPreferences(App.getContext()
             .getString(R.string.preferences_DB_name), Context.MODE_PRIVATE);

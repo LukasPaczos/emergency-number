@@ -1,6 +1,7 @@
 package com.lukaspaczos.emergencynumber.launcher;
 
 import android.Manifest;
+import android.accounts.NetworkErrorException;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.DialogInterface;
@@ -17,26 +18,43 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.crashlytics.android.Crashlytics;
 import com.lukaspaczos.emergencynumber.MainActivity;
 import com.lukaspaczos.emergencynumber.R;
+import com.lukaspaczos.emergencynumber.communication.network.api.numbers.EmergencyNumbersApi;
+import com.lukaspaczos.emergencynumber.communication.network.api.numbers.EmergencyNumbersPOJO;
+import com.lukaspaczos.emergencynumber.util.NetworkUtils;
 import com.lukaspaczos.emergencynumber.util.Pref;
 import com.lukaspaczos.emergencynumber.util.ResizeAnimation;
+
+import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LauncherActivity extends AppCompatActivity implements OnFragmentInteractionListener {
 
     private static final int PERMISSIONS_REQUEST_CODE = 2536;
+    private static final String[] permissionsArray = new String[]{
+            Manifest.permission.READ_PHONE_STATE,
+            Manifest.permission.ACCESS_NETWORK_STATE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.RECEIVE_SMS,
+            Manifest.permission.SEND_SMS};
 
     private Intent startIntent;
 
     private View contentFrame;
-
     private ProgressBar mProgressView;
-
     private ImageView logo;
     private Animation shrinkAnimation;
     private Animation growAnimation;
     private boolean isShrunk = false;
     private boolean canBack = false;
+
+    private String fetchedEmergencyNumber = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,25 +74,23 @@ public class LauncherActivity extends AppCompatActivity implements OnFragmentInt
         growAnimation = new ResizeAnimation(logo, sizeSmall, sizeSmall, sizeBig, sizeBig);
         growAnimation.setFillAfter(true);
 
-        if (
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED
-                        || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                        || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                        || ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED
-                        || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE) != PackageManager.PERMISSION_GRANTED
-                        || ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+        for (String permission : permissionsArray) {
+            if (ActivityCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(
+                        this,
+                        permissionsArray,
+                        PERMISSIONS_REQUEST_CODE
+                );
+                break;
+            }
+        }
 
-            ActivityCompat.requestPermissions(this,
-                    new String[]{
-                            Manifest.permission.READ_PHONE_STATE,
-                            Manifest.permission.ACCESS_NETWORK_STATE,
-                            Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_COARSE_LOCATION,
-                            Manifest.permission.RECEIVE_SMS,
-                            Manifest.permission.SEND_SMS},
-                    PERMISSIONS_REQUEST_CODE);
-        } else
-            verifiedInit(savedInstanceState);
+        if (savedInstanceState == null) {
+            startStart();
+        }
+
+        showProgress(true);
+        fetchEmergencyNumbersData();
     }
 
     @Override
@@ -96,15 +112,11 @@ public class LauncherActivity extends AppCompatActivity implements OnFragmentInt
                 dialog.setNeutralButton(R.string.no_permissions_retry, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        ActivityCompat.requestPermissions(LauncherActivity.this,
-                                new String[]{
-                                        Manifest.permission.READ_PHONE_STATE,
-                                        Manifest.permission.ACCESS_NETWORK_STATE,
-                                        Manifest.permission.ACCESS_FINE_LOCATION,
-                                        Manifest.permission.ACCESS_COARSE_LOCATION,
-                                        Manifest.permission.RECEIVE_SMS,
-                                        Manifest.permission.SEND_SMS},
-                                PERMISSIONS_REQUEST_CODE);
+                        ActivityCompat.requestPermissions(
+                                LauncherActivity.this,
+                                permissionsArray,
+                                PERMISSIONS_REQUEST_CODE
+                        );
                     }
                 });
                 dialog.show();
@@ -112,19 +124,107 @@ public class LauncherActivity extends AppCompatActivity implements OnFragmentInt
                 return;
             }
         }
-
-        verifiedInit(null);
     }
 
-    private void verifiedInit(Bundle savedInstanceState) {
-        String name = Pref.getString(Pref.NAME, "");
-        String number = Pref.getString(Pref.EMERGENCY_PHONE_NUMBER, "");
+    private void verifiedInit() {
+        final String name = Pref.getString(Pref.NAME, "");
+        final String number = Pref.getString(Pref.EMERGENCY_PHONE_NUMBER, "");
 
         if (!name.isEmpty() && !number.isEmpty()) {
-            startMainActivity();
-        } else if (savedInstanceState == null) {
-            startStart();
+            if (number.equals(fetchedEmergencyNumber)
+                    || fetchedEmergencyNumber.isEmpty()
+                    || !Pref.getBoolean(Pref.SHOW_NUMBER_CHANGED_DIALOG, true)) {
+                startMainActivity();
+            } else {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+                dialog.setCancelable(false);
+                dialog.setTitle(R.string.init_update_number_dialog_title);
+                dialog.setMessage(String.format(Locale.getDefault(),
+                        getString(R.string.init_update_number_dialog_msg),
+                        number,
+                        fetchedEmergencyNumber));
+                dialog.setPositiveButton(R.string.init_update_number_dialog_positive, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Pref.putString(Pref.EMERGENCY_PHONE_NUMBER, fetchedEmergencyNumber);
+                        startMainActivity();
+                    }
+                });
+                dialog.setNegativeButton(R.string.init_update_number_dialog_negative, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startMainActivity();
+                    }
+                });
+                dialog.setNeutralButton(R.string.init_update_number_dialog_neutral, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Pref.putBoolean(Pref.SHOW_NUMBER_CHANGED_DIALOG, false);
+                        startMainActivity();
+                    }
+                });
+                dialog.show();
+            }
         }
+    }
+
+    private void fetchEmergencyNumbersData() {
+        String countryCode = NetworkUtils.getUserCountry(this);
+        if (countryCode == null || countryCode.isEmpty()) {
+            showProgress(false);
+            verifiedInit();
+            return;
+        }
+
+        Call<EmergencyNumbersPOJO> call = EmergencyNumbersApi.getInstance().getService().getNumbers(countryCode);
+        call.enqueue(new Callback<EmergencyNumbersPOJO>() {
+            @Override
+            public void onResponse(Call<EmergencyNumbersPOJO> call, Response<EmergencyNumbersPOJO> response) {
+                if (response.isSuccessful()) {
+                    String errorMsg = response.body().getError();
+                    if (errorMsg == null || errorMsg.isEmpty()) {
+                        EmergencyNumbersPOJO.DataBean dataBean = response.body().getData();
+                        EmergencyNumbersPOJO.DataBean.DispatchBean dispatchBean = dataBean.getDispatch();
+                        if (dataBean.isMember_112()) {
+                            fetchedEmergencyNumber = "112";
+                        } else if (dispatchBean.getAll() != null && !dispatchBean.getAll().isEmpty() && !dispatchBean.getAll().get(0).isEmpty()) {
+                            fetchedEmergencyNumber = dispatchBean.getAll().get(0);
+                        } else if (dispatchBean.getGsm() != null && !dispatchBean.getGsm().isEmpty() && !dispatchBean.getGsm().get(0).isEmpty()) {
+                            fetchedEmergencyNumber = dispatchBean.getGsm().get(0);
+                        } else if (dataBean.getPolice().getAll() != null && !dataBean.getPolice().getAll().isEmpty() && !dataBean.getPolice().getAll().get(0).isEmpty()) {
+                            fetchedEmergencyNumber = dataBean.getPolice().getAll().get(0);
+                        } else if (dataBean.getAmbulance().getAll() != null && !dataBean.getAmbulance().getAll().isEmpty() && !dataBean.getAmbulance().getAll().get(0).isEmpty()) {
+                            fetchedEmergencyNumber = dataBean.getAmbulance().getAll().get(0);
+                        }
+
+                    } else {
+                        Crashlytics.logException(new NetworkErrorException(call.request().toString()));
+                    }
+                } else {
+                    Crashlytics.logException(new NetworkErrorException(call.request().toString()));
+                }
+
+                showProgress(false);
+                verifiedInit();
+            }
+
+            @Override
+            public void onFailure(final Call<EmergencyNumbersPOJO> call, final Throwable t) {
+                NetworkUtils.hasActiveInternetConnection(new NetworkUtils.NetworkStateListener() {
+                    @Override
+                    public void hasNetworkConnection(boolean result) {
+                        if (result) {
+                            Crashlytics.logException(new NetworkErrorException(call.request().toString() + " - has internet"));
+                        } else {
+                            Crashlytics.logException(new NetworkErrorException(call.request().toString() + " - no internet"));
+                        }
+                    }
+                });
+
+                showProgress(false);
+                verifiedInit();
+            }
+        });
     }
 
     @Override
@@ -144,11 +244,12 @@ public class LauncherActivity extends AppCompatActivity implements OnFragmentInt
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.content_frame, BeginFragment.newInstance(), BeginFragment.TAG)
+                .replace(R.id.content_frame, BeginFragment.newInstance(fetchedEmergencyNumber), BeginFragment.TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();
     }
 
+    @Override
     public void startMainActivity() {
         Intent intent;
         intent = new Intent(this, MainActivity.class);

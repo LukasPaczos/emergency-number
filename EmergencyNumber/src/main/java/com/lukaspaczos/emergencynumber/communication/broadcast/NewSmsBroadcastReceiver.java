@@ -1,4 +1,4 @@
-package com.lukaspaczos.emergencynumber.broadcast.receiver;
+package com.lukaspaczos.emergencynumber.communication.broadcast;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

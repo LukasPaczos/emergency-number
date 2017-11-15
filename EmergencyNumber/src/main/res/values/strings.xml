@@ -77,7 +77,7 @@
     <string name="web_view_error">Error occurred while loading first aid tips.</string>
     <string name="prompt_email">E-mail (optional)</string>
     <string name="prompt_name">Name</string>
-    <string name="prompt_emergency_phone">Emergency phone number</string>
+    <string name="prompt_emergency_phone">Country\'s emergency phone number</string>
     <string name="error_invalid_phone">Invalid phone number</string>
     <string name="error_invalid_email">Invalid e-mail</string>
     <string name="error_field_required">this field is required</string>
@@ -95,4 +95,11 @@
     <string name="location_use_custom">or put in an address</string>
     <string name="location_address">Address…</string>
     <string name="chat_operator">Operator</string>
+    <string name="emergency_number_api_no_country">We couldn\'t establish your position to fetch emergency number. Please enter it yourself.</string>
+    <string name="begin_change_number">CHANGE</string>
+    <string name="init_update_number_dialog_title">Update emergency number</string>
+    <string name="init_update_number_dialog_msg">We\'ve detected that emergency number changed for your area. Do you want to update it from %s to %s?</string>
+    <string name="init_update_number_dialog_positive">Update</string>
+    <string name="init_update_number_dialog_negative">Dismiss</string>
+    <string name="init_update_number_dialog_neutral">Don\'t show anymore</string>
 </resources>
