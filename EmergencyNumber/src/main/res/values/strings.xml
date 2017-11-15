@@ -96,4 +96,5 @@
     <string name="location_address">Address…</string>
     <string name="chat_operator">Operator</string>
     <string name="emergency_number_api_no_country">We couldn\'t establish your position to fetch emergency number. Please enter it yourself.</string>
+    <string name="begin_change_number">CHANGE</string>
 </resources>

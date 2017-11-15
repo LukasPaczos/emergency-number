@@ -52,6 +52,7 @@ public class BeginFragment extends Fragment {
     private EditText mEmailView;
     private CheckBox mRulesView;
     private TextView mRulesTextView;
+    private Button mChangeNumberButton;
 
     public BeginFragment() {
         // Required empty public constructor
@@ -81,6 +82,7 @@ public class BeginFragment extends Fragment {
         mEmailView = (EditText) rootView.findViewById(R.id.email);
         mRulesView = (CheckBox) rootView.findViewById(R.id.register_rules);
         mRulesTextView = (TextView) rootView.findViewById(R.id.register_rules_text);
+        mChangeNumberButton = rootView.findViewById(R.id.begin_change_number_button);
 
         Button mRegisterButton = (Button) rootView.findViewById(R.id.continue_button);
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +117,15 @@ public class BeginFragment extends Fragment {
         mRulesTextView.setText(sp);
         mRulesTextView.setMovementMethod(LinkMovementMethod.getInstance());
         mRulesTextView.setHighlightColor(ContextCompat.getColor(getActivity(), R.color.primary_white_text));
+
+        mChangeNumberButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.setVisibility(View.GONE);
+                mNumberView.setEnabled(true);
+                mNumberView.setText("");
+            }
+        });
 
         return rootView;
     }
@@ -175,6 +186,7 @@ public class BeginFragment extends Fragment {
                         if (!fetchedNumber.isEmpty()) {
                             mNumberView.setText(fetchedNumber);
                             mNumberView.setEnabled(false);
+                            mChangeNumberButton.setVisibility(View.VISIBLE);
                         }
 
                     } else {

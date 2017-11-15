@@ -129,4 +129,5 @@
     <string name="error_sending_report">Wystąpił błąd. Sprawdź poprawność numeru alarmowego w ustawieniach i spróbuj ponownie.</string>
     <string name="chat_operator">Operator</string>
     <string name="emergency_number_api_no_country">Nie udało nam się ustalić Twojej pozycji, żeby określić numer alarmowy. Wprowadź ręcznie.</string>
+    <string name="begin_change_number">ZMIEŃ</string>
 </resources>
