@@ -97,4 +97,9 @@
     <string name="chat_operator">Operator</string>
     <string name="emergency_number_api_no_country">We couldn\'t establish your position to fetch emergency number. Please enter it yourself.</string>
     <string name="begin_change_number">CHANGE</string>
+    <string name="init_update_number_dialog_title">Update emergency number</string>
+    <string name="init_update_number_dialog_msg">We\'ve detected that emergency number changed for your area. Do you want to update it from %s to %s?</string>
+    <string name="init_update_number_dialog_positive">Update</string>
+    <string name="init_update_number_dialog_negative">Dismiss</string>
+    <string name="init_update_number_dialog_neutral">Don\'t show anymore</string>
 </resources>

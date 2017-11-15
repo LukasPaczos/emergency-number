@@ -1,6 +1,5 @@
 package com.lukaspaczos.emergencynumber.launcher;
 
-import android.accounts.NetworkErrorException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -13,7 +12,6 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,24 +21,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
 import com.lukaspaczos.emergencynumber.R;
-import com.lukaspaczos.emergencynumber.communication.network.api.numbers.EmergencyNumbersApi;
-import com.lukaspaczos.emergencynumber.communication.network.api.numbers.EmergencyNumbersPOJO;
-import com.lukaspaczos.emergencynumber.util.NetworkUtils;
 import com.lukaspaczos.emergencynumber.util.Pref;
 import com.lukaspaczos.emergencynumber.util.StringUtils;
 import com.lukaspaczos.emergencynumber.util.UserInterfaceUtils;
 
 import java.util.Locale;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class BeginFragment extends Fragment {
 
     public static final String TAG = "begin_fragment";
+    public static final String FETCHED_NUMBER_ARG = "fetched_number_arg";
 
     private OnFragmentInteractionListener mListener;
 
@@ -54,13 +45,16 @@ public class BeginFragment extends Fragment {
     private TextView mRulesTextView;
     private Button mChangeNumberButton;
 
+    private String fetchedNumber = "";
+
     public BeginFragment() {
         // Required empty public constructor
     }
 
-    public static BeginFragment newInstance() {
+    public static BeginFragment newInstance(String fetchedNumber) {
         BeginFragment fragment = new BeginFragment();
         Bundle args = new Bundle();
+        args.putString(FETCHED_NUMBER_ARG, fetchedNumber);
         fragment.setArguments(args);
         return fragment;
     }
@@ -69,6 +63,7 @@ public class BeginFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            fetchedNumber = getArguments().getString(FETCHED_NUMBER_ARG);
         }
     }
 
@@ -127,6 +122,15 @@ public class BeginFragment extends Fragment {
             }
         });
 
+        if (fetchedNumber.isEmpty()) {
+            Toast.makeText(getActivity(), R.string.emergency_number_api_no_country, Toast.LENGTH_LONG).show();
+            mChangeNumberButton.setVisibility(View.GONE);
+        } else {
+            mNumberView.setText(fetchedNumber);
+            mNumberView.setEnabled(false);
+            mChangeNumberButton.setVisibility(View.VISIBLE);
+        }
+
         return rootView;
     }
 
@@ -145,81 +149,6 @@ public class BeginFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        fetchEmergencyNumbersData();
-    }
-
-    private void fetchEmergencyNumbersData() {
-        String countryCode = NetworkUtils.getUserCountry(getActivity());
-        if (countryCode == null || countryCode.isEmpty()) {
-            Toast.makeText(getActivity(), R.string.emergency_number_api_no_country, Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        Call<EmergencyNumbersPOJO> call = EmergencyNumbersApi.getInstance().getService().getNumbers(countryCode);
-        call.enqueue(new Callback<EmergencyNumbersPOJO>() {
-            @Override
-            public void onResponse(Call<EmergencyNumbersPOJO> call, Response<EmergencyNumbersPOJO> response) {
-                if (response.isSuccessful()) {
-                    String errorMsg = response.body().getError();
-                    if (errorMsg == null || errorMsg.isEmpty()) {
-                        EmergencyNumbersPOJO.DataBean dataBean = response.body().getData();
-                        String fetchedNumber = "";
-                        EmergencyNumbersPOJO.DataBean.DispatchBean dispatchBean = dataBean.getDispatch();
-                        if (dataBean.isMember_112()) {
-                            fetchedNumber = "112";
-                        } else if (dispatchBean.getAll() != null && !dispatchBean.getAll().isEmpty() && !dispatchBean.getAll().get(0).isEmpty()) {
-                            fetchedNumber = dispatchBean.getAll().get(0);
-                        } else if (dispatchBean.getGsm() != null && !dispatchBean.getGsm().isEmpty() && !dispatchBean.getGsm().get(0).isEmpty()) {
-                            fetchedNumber = dispatchBean.getGsm().get(0);
-                        } else if (dataBean.getPolice().getAll() != null && !dataBean.getPolice().getAll().isEmpty() && !dataBean.getPolice().getAll().get(0).isEmpty()) {
-                            fetchedNumber = dataBean.getPolice().getAll().get(0);
-                        } else if (dataBean.getAmbulance().getAll() != null && !dataBean.getAmbulance().getAll().isEmpty() && !dataBean.getAmbulance().getAll().get(0).isEmpty()) {
-                            fetchedNumber = dataBean.getAmbulance().getAll().get(0);
-                        }
-
-                        if (!fetchedNumber.isEmpty()) {
-                            mNumberView.setText(fetchedNumber);
-                            mNumberView.setEnabled(false);
-                            mChangeNumberButton.setVisibility(View.VISIBLE);
-                        }
-
-                    } else {
-                        Toast.makeText(getActivity(), R.string.emergency_number_api_no_country, Toast.LENGTH_LONG).show();
-                        Crashlytics.logException(new NetworkErrorException(call.request().toString()));
-                    }
-                } else {
-                    Toast.makeText(getActivity(), R.string.emergency_number_api_no_country, Toast.LENGTH_LONG).show();
-                    Crashlytics.logException(new NetworkErrorException(call.request().toString()));
-                }
-            }
-
-            @Override
-            public void onFailure(final Call<EmergencyNumbersPOJO> call, final Throwable t) {
-                NetworkUtils.hasActiveInternetConnection(new NetworkUtils.NetworkStateListener() {
-                    @Override
-                    public void hasNetworkConnection(boolean result) {
-                        if (result) {
-                            Log.d("API REQUEST", "FAILURE: " + t);
-                            Crashlytics.logException(new NetworkErrorException(call.request().toString() + " - has internet"));
-                        } else {
-                            Crashlytics.logException(new NetworkErrorException(call.request().toString() + " - no internet"));
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(getActivity(), R.string.emergency_number_api_no_country, Toast.LENGTH_LONG).show();
-                                }
-                            });
-                        }
-                    }
-                });
-            }
-        });
     }
 
     private void attemptRegister() {

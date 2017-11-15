@@ -121,6 +121,7 @@
     <string name="first_aid_url">http://www.mz.gov.pl/system-ochrony-zdrowia/panstwowe-ratownictwo-medyczne/pierwsza-pomoc/sposob-udzielania-pierwszej-pomocy-w-wybranych-naglych-wypadkach/</string>
     <string name="rules_url">file:///android_asset/rules_website.html</string>
     <string name="app_logo">Logo aplikacji</string>
+
     <string name="action_start_begin">ROZPOCZNIJ</string>
     <string name="prompt_emergency_phone">Numer alarmowy w Twoim kraju</string>
     <string name="send_message_desc">Wyślij wiadomość</string>
@@ -128,6 +129,13 @@
     <string name="location_address">Adres…</string>
     <string name="error_sending_report">Wystąpił błąd. Sprawdź poprawność numeru alarmowego w ustawieniach i spróbuj ponownie.</string>
     <string name="chat_operator">Operator</string>
+
+    <!--EMERGENCY NUMBER-->
     <string name="emergency_number_api_no_country">Nie udało nam się ustalić Twojej pozycji, żeby określić numer alarmowy. Wprowadź ręcznie.</string>
     <string name="begin_change_number">ZMIEŃ</string>
+    <string name="init_update_number_dialog_title">Zaktualizuj numer alarmowy</string>
+    <string name="init_update_number_dialog_msg">Zauwazyliśmy, że numer alarmowy dla twojej lokalizacji się zmienił. Czy chcesz go zaktualizować z %s na %s?</string>
+    <string name="init_update_number_dialog_positive">Zaktualizuj</string>
+    <string name="init_update_number_dialog_negative">Pomiń</string>
+    <string name="init_update_number_dialog_neutral">Nie pokazuj więcej</string>
 </resources>
